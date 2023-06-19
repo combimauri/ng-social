@@ -1,4 +1,6 @@
-<div *ngIf="post">
+<div *ngIf="post" class="post" [routerLink]="['/feed', post.id]">
   {{ post.value }}
-  {{ post.date }}
+  <div class="post__date">
+    {{ post.date | date : "short" }}
+  </div>
 </div>
