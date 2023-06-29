@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Subject, takeUntil } from 'rxjs';
 
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private unsubscribe$ = new Subject<void>();
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.loginForm.valueChanges
@@ -42,6 +43,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     const loginData = this.loginForm.value as User;
 
-    this.auth.login(loginData).subscribe();
+    this.auth
+      .login(loginData)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/feed']);
+        },
+      });
   }
 }

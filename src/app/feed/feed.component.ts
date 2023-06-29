@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Post } from './post/post.model';
-import { LoggerService } from '../core/services/logger/logger.service';
+import { PostService } from '../core/services/feed/post.service';
+import { catchError, tap } from 'rxjs';
 
 @Component({
   selector: 'ngsocial-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
 })
-export class FeedComponent implements OnInit {
-  posts: Post[] = [
-    { id: '1', value: 'Test1', date: new Date() },
-    { id: '2', value: 'Test2', date: new Date() },
-    { id: '3', value: 'Test3', date: new Date() },
-  ];
+export class FeedComponent {
+  posts$ = this.postService.getPosts().pipe(
+    tap(console.log),
+    catchError((error) => {
+      this.handleError(error);
 
-  constructor(private logger: LoggerService) {}
+      throw error;
+    })
+  );
 
-  ngOnInit(): void {
-    this.logger.log('Feed has loaded');
+  constructor(private postService: PostService) {}
+
+  handleError(error: Error): void {
+    console.error(error);
   }
 }

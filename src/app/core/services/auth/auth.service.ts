@@ -1,5 +1,6 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 
 import { User } from '../../models/user';
@@ -12,7 +13,10 @@ interface TokenData {
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private http: HttpClient
+  ) {}
 
   login(userData: User): Observable<TokenData> {
     return this.http
@@ -24,7 +28,17 @@ export class AuthService {
     return this.http.post<User>('http://localhost:3000/auth/signup', userData);
   }
 
+  isLoggedIn(): boolean {
+    if (isPlatformBrowser(this.platformId)) {
+      return !!localStorage.getItem('ngsocial_auth_token');
+    }
+
+    return false;
+  }
+
   private saveToken(token: string): void {
-    window.localStorage.setItem('ngsocial_auth_token', token);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('ngsocial_auth_token', token);
+    }
   }
 }

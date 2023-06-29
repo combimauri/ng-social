@@ -17,11 +17,9 @@ export class SignupComponent {
 
   signup(): void {
     if (this.signupForm?.invalid) {
-      console.log('invalid', this.signupForm?.value);
       return;
     }
 
-    console.log('valid', this.signupForm?.value);
     this.auth.signup(this.signupForm?.value).subscribe();
   }
 }
