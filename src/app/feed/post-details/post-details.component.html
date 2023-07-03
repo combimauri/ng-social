@@ -1,4 +1,8 @@
-<p>post-details works!</p>
-<p>{{ postId }}</p>
-
-<a routerLink="/feed/3">Go to third post</a>
+<div *ngIf="post$ | async as post">
+  <p>
+    {{ post.text }}
+  </p>
+  <p>
+    {{ post.updatedAt | date }}
+  </p>
+</div>

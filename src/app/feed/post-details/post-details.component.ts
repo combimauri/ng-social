@@ -1,22 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs';
+
+import { Post } from '../post/post.model';
 
 @Component({
   selector: 'ngsocial-post-details',
   templateUrl: './post-details.component.html',
-  styleUrls: ['./post-details.component.scss']
+  styleUrls: ['./post-details.component.scss'],
 })
-export class PostDetailsComponent implements OnInit {
-  // Static way to recover the postId
-  // postId = this.route.snapshot.paramMap.get('postId');
-
-  postId: string | null = '';
+export class PostDetailsComponent {
+  post$ = this.route.data.pipe(map(({ post }) => post as Post));
 
   constructor(private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      this.postId = params.get('postId');
-    });
-  }
 }

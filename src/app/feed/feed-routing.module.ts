@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { FeedComponent } from './feed.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
+import { postResolver } from './post/post.resolver';
 
 const routes: Routes = [
   {
@@ -12,6 +13,9 @@ const routes: Routes = [
   {
     path: ':postId',
     component: PostDetailsComponent,
+    resolve: {
+      post: postResolver,
+    },
   },
 ];
 

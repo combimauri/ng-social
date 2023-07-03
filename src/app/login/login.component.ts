@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 
 import { AuthService } from '../core/services/auth/auth.service';
-import { User } from '../core/models/user';
+import { User } from '../core/models/user.model';
 
 @Component({
   selector: 'ngsocial-login',
