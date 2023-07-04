@@ -1,0 +1,10 @@
+.navbar {
+  align-items: center;
+  border-bottom: 1px solid #cfd9de;
+  display: flex;
+  height: 50px;
+
+  .navbar__title {
+    margin-left: 15px;
+  }
+}

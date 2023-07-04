@@ -1,0 +1,7 @@
+<div class="container">
+  <ng-container *ngFor="let post of posts$ | async; last as isLast">
+    <ngsocial-post [post]="post"></ngsocial-post>
+
+    <hr *ngIf="isLast" />
+  </ng-container>
+</div>

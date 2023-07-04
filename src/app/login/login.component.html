@@ -1,0 +1,24 @@
+<div class="login">
+  <form class="login__form" [formGroup]="loginForm" (ngSubmit)="login()">
+    <input
+      type="email"
+      id="email"
+      formControlName="username"
+      placeholder="Username"
+    />
+    <input
+      type="password"
+      id="password"
+      formControlName="password"
+      placeholder="Password"
+    />
+
+    <button class="btn" type="submit" [disabled]="loginForm.invalid">
+      Login
+    </button>
+  </form>
+
+  <p class="login__signup-link">
+    <a routerLink="signup">Signup</a> if you don't have an account
+  </p>
+</div>

@@ -1,0 +1,36 @@
+.login {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 500px;
+
+  .login__form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+
+    input {
+      background-color: transparent;
+      border: none;
+      border-bottom: 2px solid #cfd9de;
+      font-family: "Montserrat", sans-serif;
+      margin: 10px 0;
+      padding: 10px 0;
+      width: 100%;
+
+      &::placeholder {
+        color: #cfd9de;
+      }
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+  }
+
+  .login__signup-link {
+    font-size: 14px;
+  }
+}

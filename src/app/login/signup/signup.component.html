@@ -1,0 +1,24 @@
+<form #signupForm="ngForm" (ngSubmit)="signup()">
+  <div>
+    <label for="email">Email</label>
+    <input
+      type="email"
+      name="username"
+      id="email"
+      [(ngModel)]="email"
+      required
+    />
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      [(ngModel)]="password"
+      minlength="6"
+      required
+    />
+  </div>
+  <button type="submit" [disabled]="signupForm.invalid">Signup</button>
+</form>
