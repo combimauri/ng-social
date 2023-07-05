@@ -1,0 +1,8 @@
+<div *ngIf="post$ | async as post">
+  <p>
+    {{ post.text }}
+  </p>
+  <p>
+    {{ post.updatedAt | date }}
+  </p>
+</div>

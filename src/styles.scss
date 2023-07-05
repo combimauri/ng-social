@@ -1,1 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  margin: 0;
+}
+
+ngsocial-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.container {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+
+  @media screen and (min-width: 576px) {
+    max-width: 540px;
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 720px;
+  }
+
+  @media screen and (min-width: 992px) {
+    max-width: 960px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    max-width: 1140px;
+  }
+}
+
+.btn {
+  align-items: center;
+  background-color: #0074ff;
+  border-radius: 9px;
+  border: #0074ff;
+  color: #ffffff;
+  display: flex;
+  font-size: 18px;
+  height: 36px;
+  justify-content: center;
+  max-width: 100%;
+  text-decoration: none;
+  transition: all 0.4s;
+  width: 168px;
+
+  &:hover {
+    background-color: #008ae6;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    width: 170px;
+  }
+
+  &:disabled {
+    background-color: #b3e0ff;
+    color: #737373;
+    pointer-events: none;
+  }
+}
