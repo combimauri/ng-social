@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { ResolveFn, Router } from '@angular/router';
 import { EMPTY, catchError } from 'rxjs';
 
-import { Post } from './post.model';
+import { Post } from '../../core/models/post.model';
 import { PostService } from '../../core/services/feed/post.service';
 import { LoggerService } from '../../core/services/logger/logger.service';
 
