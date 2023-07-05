@@ -1,10 +1,12 @@
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Router } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
 
 import { User } from '../../models/user.model';
 import { UserService } from '../user/user.service';
+import { UserStateService } from '../state/user-state.service';
 
 interface TokenData {
   access_token: string;
@@ -16,27 +18,41 @@ interface TokenData {
 export class AuthService {
   get token(): string | null {
     if (isPlatformBrowser(this.platformId)) {
-      return localStorage.getItem('ngsocial_auth_token');
+      return localStorage.getItem(this.AUTH_TOKEN_KEY);
     }
 
     return null;
   }
 
+  private readonly AUTH_TOKEN_KEY = 'ngsocial_auth_token';
+
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private http: HttpClient,
-    private userService: UserService
+    private userService: UserService,
+    private userState: UserStateService,
+    private router: Router
   ) {}
 
-  login(userData: User): Observable<TokenData> {
+  login(userData: User): Observable<Partial<User>> {
     return this.http
       .post<TokenData>('http://localhost:3000/auth/login', userData)
       .pipe(
-        tap((tokenData) => {
+        switchMap((tokenData) => {
           this.saveToken(tokenData.access_token);
-          this.userService.getUserProfile().subscribe();
+
+          return this.userService.getUserProfile();
         })
       );
+  }
+
+  logout(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem(this.AUTH_TOKEN_KEY);
+    }
+
+    this.userState.clearUser();
+    this.router.navigate(['/login']);
   }
 
   signup(userData: User): Observable<User> {

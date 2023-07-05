@@ -13,6 +13,10 @@ export class UserService {
   getUserProfile(): Observable<Partial<User>> {
     return this.http
       .get<Partial<User>>('http://localhost:3000/user/profile')
-      .pipe(tap((user) => this.userState.setUserId(user._id || '')));
+      .pipe(
+        tap((user) =>
+          this.userState.setUser(user._id || '', user.username || '')
+        )
+      );
   }
 }

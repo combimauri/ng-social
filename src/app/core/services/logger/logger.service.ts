@@ -9,4 +9,8 @@ export class LoggerService {
   log(message: unknown): void {
     console.log(message);
   }
+
+  error(error: unknown): void {
+    console.error(error);
+  }
 }
