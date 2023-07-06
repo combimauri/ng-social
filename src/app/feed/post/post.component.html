@@ -1,5 +1,10 @@
-<div *ngIf="post" class="post" [routerLink]="['/feed', post._id]">
-  {{ post.text }}
+<div *ngIf="post" class="post">
+  <div class="post__text" ngsocialCollapseText>
+    <a [routerLink]="['/feed', post._id]">
+      see more
+    </a>
+    {{ post.text }}
+  </div>
   <div class="post__date">
     {{ post.updatedAt | date: 'short' }}
   </div>
@@ -10,5 +15,9 @@
         {{ comment.text }}
       </li>
     </ul>
+
+    <ngsocial-post-form (save)="saveComment($event)"></ngsocial-post-form>
   </div>
+
+  <ng-content></ng-content>
 </div>

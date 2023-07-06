@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { StateService } from './state.service';
-import { User } from '../../models/user.model';
 
 interface UserState {
   userId: string;

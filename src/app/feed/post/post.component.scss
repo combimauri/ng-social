@@ -5,6 +5,18 @@
   margin: 10px 0;
   padding: 10px;
 
+  .post__text {
+    a {
+      display: none;
+    }
+
+    &.post__text--more-visible {
+      a {
+        display: block;
+      }
+    }
+  }
+
   .post__date {
     font-size: 0.5rem;
   }
