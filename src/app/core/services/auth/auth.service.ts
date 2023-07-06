@@ -31,7 +31,7 @@ export class AuthService {
     private http: HttpClient,
     private userService: UserService,
     private userState: UserStateService,
-    private router: Router
+    private router: Router,
   ) {}
 
   login(userData: User): Observable<Partial<User>> {
@@ -42,7 +42,7 @@ export class AuthService {
           this.saveToken(tokenData.access_token);
 
           return this.userService.getUserProfile();
-        })
+        }),
       );
   }
 

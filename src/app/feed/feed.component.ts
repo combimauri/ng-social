@@ -15,12 +15,12 @@ export class FeedComponent {
       this.handleError(error);
 
       throw error;
-    })
+    }),
   );
 
   constructor(
     private postService: PostService,
-    private logger: LoggerService
+    private logger: LoggerService,
   ) {}
 
   private handleError(error: Error): void {

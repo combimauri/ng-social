@@ -8,15 +8,18 @@ import { UserStateService } from '../state/user-state.service';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient, private userState: UserStateService) {}
+  constructor(
+    private http: HttpClient,
+    private userState: UserStateService,
+  ) {}
 
   getUserProfile(): Observable<Partial<User>> {
     return this.http
       .get<Partial<User>>('http://localhost:3000/user/profile')
       .pipe(
         tap((user) =>
-          this.userState.setUser(user._id || '', user.username || '')
-        )
+          this.userState.setUser(user._id || '', user.username || ''),
+        ),
       );
   }
 }

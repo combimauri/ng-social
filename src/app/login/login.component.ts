@@ -23,7 +23,10 @@ export class LoginComponent implements OnDestroy {
 
   private unsubscribe$ = new Subject<void>();
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+  ) {}
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();

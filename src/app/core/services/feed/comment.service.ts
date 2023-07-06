@@ -11,7 +11,7 @@ export class CommentService {
 
   getCommentsByPost(postId: string): Observable<Comment[]> {
     return this.http.get<Comment[]>(
-      `http://localhost:3000/comment?postId=${postId}`
+      `http://localhost:3000/comment?postId=${postId}`,
     );
   }
 }

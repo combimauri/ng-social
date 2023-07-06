@@ -11,7 +11,7 @@ import { CommentService } from './comment.service';
 export class PostService {
   constructor(
     private http: HttpClient,
-    private commentService: CommentService
+    private commentService: CommentService,
   ) {}
 
   getPosts(): Observable<Post[]> {
@@ -22,7 +22,7 @@ export class PostService {
         });
 
         return posts;
-      })
+      }),
     );
   }
 

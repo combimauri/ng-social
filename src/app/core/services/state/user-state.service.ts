@@ -19,10 +19,10 @@ const initialUserState: UserState = {
 })
 export class UserStateService extends StateService<UserState> {
   userId$: Observable<string> | undefined = this.select(
-    (state) => state.userId
+    (state) => state.userId,
   );
   userName$: Observable<string> | undefined = this.select(
-    (state) => state.userName
+    (state) => state.userName,
   );
 
   constructor() {

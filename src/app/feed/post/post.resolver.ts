@@ -18,6 +18,6 @@ export const postResolver: ResolveFn<Post> = (route, _state) => {
       logger.error(error);
 
       return EMPTY;
-    })
+    }),
   );
 };
