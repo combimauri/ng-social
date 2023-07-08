@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 
-import { Post } from '../post/post.model';
+import { Post } from '../../core/models/post.model';
 
 @Component({
   selector: 'ngsocial-post-details',

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { User } from '../core/models/user.model';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnDestroy {
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', [
@@ -23,13 +23,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private unsubscribe$ = new Subject<void>();
 
-  constructor(private auth: AuthService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.loginForm.valueChanges
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(console.log);
-  }
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+  ) {}
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
@@ -47,9 +44,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .login(loginData)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe({
-        next: () => {
-          this.router.navigate(['/feed']);
-        },
+        next: () => this.router.navigate(['/feed']),
       });
   }
 }

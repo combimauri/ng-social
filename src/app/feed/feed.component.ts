@@ -1,34 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subject, catchError, takeUntil } from 'rxjs';
 
 import { PostService } from '../core/services/feed/post.service';
-import { catchError, tap } from 'rxjs';
-import { UserStateService } from '../core/services/state/user-state.service';
+import { LoggerService } from '../core/services/logger/logger.service';
 
 @Component({
   selector: 'ngsocial-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnDestroy {
   posts$ = this.postService.getPosts().pipe(
-    tap(console.log),
     catchError((error) => {
       this.handleError(error);
 
       throw error;
-    })
+    }),
   );
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private postService: PostService,
-    private userState: UserStateService
+    private logger: LoggerService,
   ) {}
 
-  ngOnInit(): void {
-    this.userState.userId$?.subscribe(console.log);
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
+  savePost(text: string): void {
+    this.postService
+      .savePost(text)
+      ?.pipe(takeUntil(this.unsubscribe$))
+      .subscribe();
   }
 
   private handleError(error: Error): void {
-    console.error(error);
+    this.logger.error(error);
   }
 }

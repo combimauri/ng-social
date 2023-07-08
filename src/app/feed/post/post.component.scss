@@ -1,9 +1,21 @@
 .post {
-  border: 1px solid #000;
+  border: 1px solid #cfd9de;
   border-radius: 4px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   margin: 10px 0;
   padding: 10px;
+
+  .post__text {
+    a {
+      display: none;
+    }
+
+    &.post__text--more-visible {
+      a {
+        display: block;
+      }
+    }
+  }
 
   .post__date {
     font-size: 0.5rem;

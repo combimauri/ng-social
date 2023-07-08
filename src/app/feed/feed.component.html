@@ -1,6 +1,10 @@
 <div class="container">
+  <ngsocial-post-form (save)="savePost($event)"></ngsocial-post-form>
+
   <ng-container *ngFor="let post of posts$ | async; last as isLast">
-    <ngsocial-post [post]="post"></ngsocial-post>
+    <ngsocial-post [post]="post">
+      <a [routerLink]="['/feed', post._id]"> See post details </a>
+    </ngsocial-post>
 
     <hr *ngIf="isLast" />
   </ng-container>
