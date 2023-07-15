@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 
@@ -11,6 +11,6 @@ import { Post } from '../../core/models/post.model';
 })
 export class PostDetailsComponent {
   post$ = this.route.data.pipe(map(({ post }) => post as Post));
-
+  @Input() post: Post | null = null;
   constructor(private route: ActivatedRoute) {}
 }

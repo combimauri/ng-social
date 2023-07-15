@@ -19,6 +19,12 @@ export class CommentService {
     );
   }
 
+  deleteByPost(postId: string): Observable<Comment[]> {
+    return this.http.delete<Comment[]>(
+      `http://localhost:3000/comment?postId=${postId}`,
+    );
+  }
+
   saveComment(text: string, post: string): Observable<Comment> | undefined {
     return this.userState.userId$?.pipe(
       switchMap((author) =>
