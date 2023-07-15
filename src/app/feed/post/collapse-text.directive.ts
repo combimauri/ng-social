@@ -4,7 +4,7 @@ import { AfterViewInit, Directive, ElementRef, Renderer2 } from '@angular/core';
   selector: '[ngsocialCollapseText]',
 })
 export class CollapseTextDirective implements AfterViewInit {
-  private readonly THREE_LINES_HEIGHT = 72;
+  private readonly THREE_LINES_HEIGHT = 70;
 
   constructor(
     private elementRef: ElementRef,

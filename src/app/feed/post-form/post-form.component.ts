@@ -12,6 +12,7 @@ export class PostFormComponent {
   });
 
   @Output() save = new EventEmitter<string>();
+  @Output() delete = new EventEmitter<string>();
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -20,6 +21,13 @@ export class PostFormComponent {
 
     if (text) {
       this.save.emit(text);
+    }
+  }
+
+  deletePost(): void {
+    const { text } = this.postForm.value;
+    if (text) {
+      this.delete.emit(text);
     }
   }
 }

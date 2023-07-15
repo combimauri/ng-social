@@ -48,4 +48,12 @@ export class PostService {
       ),
     );
   }
+
+  deletePost(id: string): Observable<Post> {
+    return this.http
+      .delete<Post>(`http://localhost:3000/post/${id}`)
+      .pipe
+      //TODO
+      ();
+  }
 }
