@@ -1,0 +1,5 @@
+<form class="post-form" [formGroup]="postForm" (ngSubmit)="savePost()">
+  <textarea formControlName="text" id="text" cols="30"></textarea>
+  <button type="submit"> Post </button>
+  <button type="submit"  (ngSubmit)="deletePost()" > delete </button>
+</form>

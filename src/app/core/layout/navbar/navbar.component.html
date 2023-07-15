@@ -1,0 +1,27 @@
+<div class="navbar">
+  <div class="container navbar__content">
+    <a routerLink="/"> NG SOCIAL </a>
+
+    <div *ngIf="userName$ | async as userName" class="navbar__user-menu">
+      <a (click)="openUserMenu()">
+        <i class="fa-regular fa-circle-user"></i>
+      </a>
+
+      <div
+        class="navbar__user-options"
+        ngsocialClickOutside
+        [detectClicks]="userMenuOpen"
+        [ngClass]="{ 'navbar__user-options--visible': userMenuOpen }"
+        (clickOutside)="closeUserMenu()"
+      >
+        <div class="navbar__user-name">
+          {{ userName }}
+        </div>
+        <a (click)="logout()">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Logout
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

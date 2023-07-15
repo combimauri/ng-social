@@ -1,0 +1,10 @@
+<div *ngIf="post$ | async as post">
+  {{ post.text }}
+  <div class="post__comments" *ngIf="post.comments$ | async as comments">
+    <ul *ngFor="let comment of comments">
+      <li *ngIf="comment.post._id ===post._id">
+        {{ comment.text }}
+      </li>
+    </ul>
+
+</div>

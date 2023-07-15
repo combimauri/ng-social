@@ -1,4 +1,26 @@
-<div *ngIf="post">
-  {{ post.value }}
-  {{ post.date }}
+<div *ngIf="post" class="post">
+  <div class="post__text" ngsocialCollapseText>
+    <a [routerLink]="['/feed', post._id]">
+      see more
+    </a>
+    {{ post.text }}
+  </div>
+  <div class="post__date">
+    {{ post.updatedAt | date: 'short' }}
+  </div>
+
+  <div class="post__text" *ngIf="post.comments$ | async as comments" ngsocialCollapseText>
+    <a [routerLink]="['/feed', post._id]">
+      see details
+    </a>
+    <ul *ngFor="let comment of comments; index as indice">
+
+      <li *ngIf="comment.post._id ===post._id ">
+        {{ comment.text }}
+      </li>
+    </ul>    
+  </div>
+  <ngsocial-post-form (save)="saveComment($event)"></ngsocial-post-form>
+
+  <ng-content></ng-content>
 </div>

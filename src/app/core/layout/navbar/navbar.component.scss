@@ -1,0 +1,33 @@
+.navbar {
+  align-items: center;
+  border-bottom: 1px solid #cfd9de;
+  display: flex;
+  height: 50px;
+
+  .navbar__content {
+    display: flex;
+    justify-content: space-between;
+
+    .navbar__user-menu {
+      position: relative;
+
+      .navbar__user-options {
+        display: none;
+        background-color: #ffffff;
+        border: 1px solid #cfd9de;
+        border-radius: 4px;
+        padding: 5px;
+        position: absolute;
+        right: 0;
+
+        .navbar__user-name {
+          margin-bottom: 10px;
+        }
+
+        &.navbar__user-options--visible {
+          display: block;
+        }
+      }
+    }
+  }
+}
